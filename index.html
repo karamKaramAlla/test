@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <link rel="shortcut icon" href="mjzoob.png" type="image/x-icon">
+    <style>
+        #text{
+            color: white;
+            background-color: black;
+            margin-right:300px ;
+            width: 300px;
+        }
+    </style>
+    
+<body>
+
+    <input type="text" id="text"> 
+    <div id="sug"></div>
+    <script>
+    
+    var Input = document.getElementById("text");
+    Input.oninput = function ing(){
+    
+    var div   = document.getElementById("sug");
+    var output = ""
+    var lst_char_index = Input.value.length -1;
+    var lst_char = Input.value[lst_char_index];
+    var english = Input.value.search(/[a-z]/i);
+    console.log(lst_char_index)
+     if(english < 0){
+        console.log(english)
+        output="english only please";
+        div.innerHTML =output
+    }
+    else if ( lst_char == "e" ){
+        if( lst_char_index  <= 2 ){
+            div.innerText   =   Input.value + "ing";
+        }
+        else{
+        var int = 0;
+        while (int < lst_char_index){
+            output = output + Input.value[int];
+            int++;
+                }
+        output = output+"ing" ;
+        div.innerHTML = output;
+        }
+     }
+     else if (Input.value[lst_char_index -1 ] == "a" ||
+     Input.value[lst_char_index -1 ] == "e" ||
+     Input.value[lst_char_index -1 ] == "i" || 
+     Input.value[lst_char_index -1 ] == "o" ||
+     Input.value[lst_char_index -1 ] == "u" ){
+        if(Input.value[lst_char_index  ] == "a" ||
+        Input.value[lst_char_index  -2] == "e" ||
+        Input.value[lst_char_index  -2] == "i" || 
+        Input.value[lst_char_index  -2] == "o" ||
+        Input.value[lst_char_index  -2] == "u" ){
+        output = Input.value + "ing";
+        div.innerHTML=output;
+        console.log("yes!!");
+        }
+         else if (lst_char == "y" || lst_char == "w"){
+            console.log("y!!");
+             output = Input.value + "ing";
+             div.innerHTML =  output;
+         }
+          
+         else{
+            console.log("!");
+             output =  Input.value + lst_char +"ing";
+             div.innerHTML =  output;
+        }
+    
+    }
+    else{
+        console.log("y!!");
+        div.innerHTML = Input.value + "ing";
+    }
+    if(Input.value == "karam" || Input.value=="كرم"){
+
+        output = "ما تكتب اسمي :|";
+        div.innerHTML=output;
+
+    }
+}
+
+</script>
+    
+</body>
+</html>
